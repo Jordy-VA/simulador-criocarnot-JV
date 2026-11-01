@@ -207,9 +207,11 @@ with tab5:
     fig3 = go.Figure(go.Bar(x=retencion, y=temp_array, orientation='h', 
                             marker_color=['#4caf50', '#ff9800', '#f44336'],
                             text=[f"{v}% Retención" for v in retencion], textposition='auto'))
+    # AJUSTE DE MARGEN IZQUIERDO APLICADO AQUÍ
     fig3.update_layout(title="Retención de Ácido Ascórbico (Vitamina C) según Proceso", 
                        xaxis_title="% de Vitamina C Retenida", yaxis_title="Tecnología de Concentración",
-                       plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', height=300, font=dict(color="black"))
+                       plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', height=300, font=dict(color="black"),
+                       margin=dict(l=150))
     st.plotly_chart(fig3, use_container_width=True, theme=None)
 
 # ==========================================
