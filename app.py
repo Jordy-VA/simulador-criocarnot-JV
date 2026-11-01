@@ -92,10 +92,12 @@ if producto == "Néctar de Mango":
     Cp_nectar = 3.9  
     porcentaje_agua = 0.82 
     T_congelacion = -2.0 
+    tip_texto = "El mango es rico en azúcares reductores. Concentrarlo por frío evita la reacción de Maillard (oscurecimiento) y el sabor a 'caramelo quemado', manteniendo su vibrante color amarillo-naranja intacto."
 else: 
     Cp_nectar = 3.7  
     porcentaje_agua = 0.88 
     T_congelacion = -3.0 
+    tip_texto = "El maracuyá posee compuestos aromáticos (ésteres) extremadamente volátiles. La crioconcentración asegura que estos no se evaporen, conservando su aroma tropical intenso y su acidez característica."
 
 Q_sensible = masa_kg * Cp_nectar * (T_inicial - T_congelacion)
 masa_agua = masa_kg * porcentaje_agua
@@ -211,9 +213,13 @@ with tab5:
     st.plotly_chart(fig3, use_container_width=True, theme=None)
 
 # ==========================================
-# 5. EXPORTACIÓN DE RESULTADOS (WOW 3)
+# 5. EXPORTACIÓN DE RESULTADOS Y TIP FINAL
 # ==========================================
 st.markdown("---")
+
+# Aquí se muestra el Tip Agroindustrial dinámico
+st.info(f"💡 **Tip Agroindustrial ({producto}):** {tip_texto}")
+
 reporte_texto = f"""
 =========================================
  REPORTE TÉCNICO: CRIO-CARNOT PRO
