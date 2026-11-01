@@ -213,42 +213,36 @@ with tab5:
     st.plotly_chart(fig3, use_container_width=True, theme=None)
 
 # ==========================================
-# 5. EXPORTACIÓN DE RESULTADOS Y TIP FINAL
+# 5. EXPORTACIÓN DE RESULTADOS (WOW 3 - EXCEL)
 # ==========================================
 st.markdown("---")
 
 # Aquí se muestra el Tip Agroindustrial dinámico
 st.info(f"💡 **Tip Agroindustrial ({producto}):** {tip_texto}")
 
-reporte_texto = f"""
-=========================================
- REPORTE TÉCNICO: CRIO-CARNOT PRO
-=========================================
-Producto Evaluado: {producto}
-Masa del Lote: {masa_kg:,.0f} kg
+# Estructuramos los datos en formato tabular para Excel (CSV)
+reporte_csv = f"""REPORTE TÉCNICO AGROINDUSTRIAL: CRIO-CARNOT PRO
 
-PARÁMETROS TERMODINÁMICOS:
-- Temp. Condensador (TH): {t_caliente} °C ({TH_K:.2f} K)
-- Temp. Evaporador (TC): {t_fria} °C ({TC_K:.2f} K)
-- Límite de Carnot (COP Ideal): {COP_ideal:.2f}
-- Eficiencia del Compresor: {eficiencia_2da_ley*100}%
-
-CALORIMETRÍA:
-- Calor Sensible: {Q_sensible:,.2f} kJ
-- Calor Latente: {Q_latente:,.2f} kJ
-- Carga Térmica Total: {Q_L:,.2f} kJ
-
-GASTO ENERGÉTICO REAL: {W_real_kwh:,.2f} kWh
-=========================================
-Generado por Simulador Agroindustrial.
+CATEGORÍA,PARÁMETRO,VALOR,UNIDAD
+1. Datos del Lote,Producto Evaluado,{producto},
+1. Datos del Lote,Masa del Lote,"{masa_kg:,.2f}",kg
+2. Termodinámica,Temp. Condensador (TH),{t_caliente},°C
+2. Termodinámica,Temp. Evaporador (TC),{t_fria},°C
+2. Termodinámica,Límite de Carnot (COP Ideal),{COP_ideal:.2f},
+2. Termodinámica,Eficiencia del Compresor,{eficiencia_2da_ley*100},%
+3. Calorimetría,Calor Sensible (Enfriamiento),"{Q_sensible:,.2f}",kJ
+3. Calorimetría,Calor Latente (Cristalización),"{Q_latente:,.2f}",kJ
+3. Calorimetría,Carga Térmica Total (QL),"{Q_L:,.2f}",kJ
+4. Gasto Eléctrico,Trabajo Ideal (Carnot),"{W_ideal_kwh:,.2f}",kWh
+4. Gasto Eléctrico,Trabajo Compresor Real,"{W_real_kwh:,.2f}",kWh
 """
 
 col_vacia, col_boton, col_vacia2 = st.columns([1, 2, 1])
 with col_boton:
     st.download_button(
-        label="📥 Descargar Reporte Técnico del Lote (.txt)",
-        data=reporte_texto,
-        file_name=f"Reporte_Crio_{producto.split()[2]}.txt",
-        mime="text/plain",
+        label="📊 Descargar Reporte en Excel (.csv)",
+        data=reporte_csv.encode('utf-8-sig'),
+        file_name=f"Reporte_Crio_{producto.split()[2]}.csv",
+        mime="text/csv",
         use_container_width=True
     )
