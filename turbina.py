@@ -44,14 +44,14 @@ st.markdown("<h1 class='main-title'>🌾 Thermo-Agro Pro: Máquinas Térmicas</h
 st.markdown("<p style='text-align: center;'><b>Simulador de Generación de Energía con Biomasa Agroindustrial</b></p>", unsafe_allow_html=True)
 
 # ==========================================
-# 2. NUEVO: PANEL DE ENUNCIADO INTERACTIVO (VIDEO/AUDIO)
+# 2. PANEL DE ENUNCIADO INTERACTIVO (VIDEO/AUDIO)
 # ==========================================
 with st.expander("🚨 CONEXIÓN EN VIVO: SALA DE CONTROL (REPORTE DE PLANTA)", expanded=True):
     col_animacion, col_texto = st.columns([1, 2])
     
     with col_animacion:
-        # GIF Animado de una máquina/turbina de vapor funcionando
-        st.image("https://upload.wikimedia.org/wikipedia/commons/4/44/Steam_engine_in_action.gif", use_container_width=True)
+        # GIF Animado con enlace actualizado para evitar bloqueos
+        st.image("https://i.gifer.com/131X.gif", use_container_width=True)
         st.caption("Esquema dinámico: Expansión de vapor generando trabajo")
 
     with col_texto:
@@ -137,11 +137,14 @@ with tab1:
 
 with tab2:
     st.subheader("Balance Termodinámico y Comparación de Eficiencias")
-    col1, col2, col3, col4 = st.columns(4)
+    
+    # SOLUCIÓN DEL CORTE: Ahora hay 5 columnas para que los números respiren
+    col1, col2, col3, col4, col5 = st.columns(5)
     col1.metric("Calor (QA)", f"{q_entrada:,.0f} kJ")
     col2.metric("Trabajo (W)", f"{trabajo_real:,.0f} kJ")
     col3.metric("Rechazo (QB)", f"{QB:,.0f} kJ")
-    col4.metric("Temp (K)", f"TA: {TA_K:.0f}K | TB: {TB_K:.0f}K")
+    col4.metric("Temp. (TA)", f"{TA_K:.0f} K")
+    col5.metric("Temp. (TB)", f"{TB_K:.0f} K")
     
     c_gauge1, c_gauge2 = st.columns(2)
     fig_gauge_real = go.Figure(go.Indicator(mode="gauge+number", value=eta_real, number={'suffix': "%"}, domain={'x': [0, 1], 'y': [0, 1]}, title={'text': "Eficiencia Real (η)", 'font': {'color': 'black', 'size': 15}}, gauge={'axis': {'range': [0, 100]}, 'bar': {'color': "#2d6a4f"}, 'steps': [{'range': [0, eta_carnot], 'color': "#d8f3dc"}, {'range': [eta_carnot, 100], 'color': "#ffccd5"}]}))
