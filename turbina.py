@@ -50,8 +50,8 @@ with st.expander("🚨 CONEXIÓN EN VIVO: SALA DE CONTROL (REPORTE DE PLANTA)", 
     col_animacion, col_texto = st.columns([1, 2])
     
     with col_animacion:
-        # GIF Animado con enlace actualizado para evitar bloqueos
-        st.image("https://i.gifer.com/131X.gif", use_container_width=True)
+        # GIF Animado seguro de una turbina real (Sin Jokers)
+        st.image("https://media.tenor.com/J4rUj28c11YAAAAC/engine-steam-engine.gif", use_container_width=True)
         st.caption("Esquema dinámico: Expansión de vapor generando trabajo")
 
     with col_texto:
@@ -138,7 +138,7 @@ with tab1:
 with tab2:
     st.subheader("Balance Termodinámico y Comparación de Eficiencias")
     
-    # SOLUCIÓN DEL CORTE: Ahora hay 5 columnas para que los números respiren
+    # SOLUCIÓN: 5 columnas espaciadas para evitar que el texto se recorte
     col1, col2, col3, col4, col5 = st.columns(5)
     col1.metric("Calor (QA)", f"{q_entrada:,.0f} kJ")
     col2.metric("Trabajo (W)", f"{trabajo_real:,.0f} kJ")
