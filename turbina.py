@@ -50,9 +50,19 @@ with st.expander("🚨 CONEXIÓN EN VIVO: SALA DE CONTROL (REPORTE DE PLANTA)", 
     col_animacion, col_texto = st.columns([1, 2])
     
     with col_animacion:
-        # GIF Animado seguro de una turbina real (Sin Jokers)
-        st.image("https://media.tenor.com/J4rUj28c11YAAAAC/engine-steam-engine.gif", use_container_width=True)
-        st.caption("Esquema dinámico: Expansión de vapor generando trabajo")
+        # ANIMACIÓN 100% SEGURA HECHA CON CÓDIGO CSS (Cero imágenes externas)
+        st.markdown("""
+        <div style='text-align: center; padding: 10px; background-color: rgba(0,0,0,0.05); border-radius: 15px;'>
+            <div style='font-size: 70px; display: inline-block; animation: spin 3s linear infinite;'>⚙️</div>
+            <div style='font-size: 50px; display: inline-block; animation: spin-reverse 2s linear infinite; margin-left: -15px; margin-top: 20px;'>⚙️</div>
+            <div style='font-size: 70px; display: inline-block; animation: spin 3s linear infinite; margin-left: -15px;'>⚙️</div>
+        </div>
+        <style>
+            @keyframes spin { 100% { transform: rotate(360deg); } }
+            @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+        </style>
+        <p style='text-align: center; font-size: 14px; color: #2d6a4f; margin-top: 10px;'><b>🟢 TURBINA OPERATIVA</b></p>
+        """, unsafe_allow_html=True)
 
     with col_texto:
         st.info("🔔 **MENSAJE ENTRANTE DEL JEFE DE PLANTA:**")
@@ -138,7 +148,6 @@ with tab1:
 with tab2:
     st.subheader("Balance Termodinámico y Comparación de Eficiencias")
     
-    # SOLUCIÓN: 5 columnas espaciadas para evitar que el texto se recorte
     col1, col2, col3, col4, col5 = st.columns(5)
     col1.metric("Calor (QA)", f"{q_entrada:,.0f} kJ")
     col2.metric("Trabajo (W)", f"{trabajo_real:,.0f} kJ")
